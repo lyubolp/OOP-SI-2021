@@ -1,8 +1,9 @@
 #include <iostream>
 #include "DynamicArray.hpp"
 #include "Rational.hpp"
+#include "MagicBox.hpp"
 int main() {
-    DynamicArray first;
+    /*DynamicArray first;
 
     first.append(1);
     first.append(2);
@@ -24,7 +25,7 @@ int main() {
     std::cout << std::endl; //1 2 3 0
 
     third.print_memory();
-    std::cout << std::endl; //1 2 3 0
+    std::cout << std::endl; //1 2 3 0*/
 
 
    /* Rational first(3, 5);
@@ -33,5 +34,16 @@ int main() {
     Rational result = first * second;
 
     std::cout << result.to_string() << std::endl;*/
+
+   MagicBox mg;
+   mg.insert(2);
+   mg.insert(3);
+   mg.insert(8);
+   mg.insert(7);
+   mg.insert(1);
+
+   std::cout << mg.remove() << std::endl;
+
+   mg.print();
     return 0;
 }

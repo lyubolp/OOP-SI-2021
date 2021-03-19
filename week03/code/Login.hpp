@@ -39,7 +39,7 @@ public:
     int get_session() const;
 
 private:
-    void copy_char_array(char* destination, const char* source);
+    char* copy_char_array(const char* source);
 
     char* username;
     char* password;

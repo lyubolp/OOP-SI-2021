@@ -1,88 +1,114 @@
 #include <iostream>
-#include "DynamicArray.hpp"
+#include <cstring>
+#include "pair.hpp"
+#include "double_typed_pair.hpp"
+/*
+ 0x08 0x09  0x0a 0x0b  0x0c
+  0    3     6     9    12
+  a   ptr
+ */
 
-#include "some_random_functions.h"
-/*template <typename T, typename S>
-class Pair {
-public:
-    Pair() {
-        this->key = T();
-        this->value = S();
+void print_array(const int* array, const int size) {
+    for(int i = 0; i < size; i++) {
+        std::cout << array[i] << " ";
     }
-    Pair(const T& key, const S& value) {
-        this->key = key;
-        this->value = value;
-    }
-
-    T get_key() const {
-        return this->key;
-    }
-
-    S get_value() const {
-        return this->value;
-    }
-    void set_pair(const T& key, const S& value);
-private:
-    T key;
-    S value;
-};
-
-template <typename T, typename S>
-void Pair<T,S>::set_pair(const T &key, const S &value) {
-    this->key = key;
-    this->value = value;
-}*/
-
-class Foo{
-public:
-    Foo(const int content = 0) {
-        this->content = content;
-    }
-
-
-    int get_content() const {
-        return this->content;
-    }
-private:
-    int content;
-};
-template <typename T>
-T add(const T& first, const T& second) {
-    return first + second;
 }
 
+/*int* deep_copy(const int* array, const int size) {
+    int* result = new int[size];
+    for(int i = 0; i < size; i++) {
+        result[i] = array[i];
+    }
+
+    return result;
+}*/
+
+/*class DynamicMemoryHolder {
+public:
+    DynamicMemoryHolder() {
+        std::cout << "Constructor called\n";
+        this->some_dynamic_values = new int[3];
+        this->size = 3;
+    }
+
+    DynamicMemoryHolder(const DynamicMemoryHolder& from) {
+        std::cout << "Copy()\n";
+        this->some_dynamic_values = new int[from.size];
+
+        for(int i = 0; i < this->size; i++) {
+            this->some_dynamic_values[i] = from.some_dynamic_values[i];
+        }
+    }
+
+    DynamicMemoryHolder& operator=(const DynamicMemoryHolder& from) {
+        std::cout << "Operator=\n";
+        if (this != &from){
+            delete[] this->some_dynamic_values;
+            this->some_dynamic_values = new int[from.size];
+
+            for(int i = 0; i < this->size; i++) {
+                this->some_dynamic_values[i] = from.some_dynamic_values[i];
+            }
+        }
+        return *this;
+
+    }
+    void set_dynamic_values(const int* new_values) {
+        delete[] this->some_dynamic_values;
+        this->some_dynamic_values = new int[this->size];
+
+        for(int i = 0; i < this->size; i++) {
+            this->some_dynamic_values[i] = new_values[i];
+        }
+    }
+
+    int* get_dynamic_values() const {
+        return this->some_dynamic_values;
+    }
+
+    ~DynamicMemoryHolder() {
+        std::cout << "Destructor called\n";
+        delete[] this->some_dynamic_values;
+    }
+private:
+    int* some_dynamic_values;
+    int size;
+};
+
+void foo(const DynamicMemoryHolder bar) {
+    //std::cout << "2.5\n";
+    bar.get_dynamic_values();
+}*/
 int main() {
-    /*Pair<std::string, int> myPair;
-    myPair.get_value();*/
-
-    /*DynamicArray<int> intArray;
-    for(int i = 0; i < 5; i++) {
-        intArray.append(i);
-    }
-    std::cout << "intArray.print() = " << intArray.print() << std::endl;
-
-    DynamicArray<double> doubleArray;
-    for(int i = 0; i < 5; i++) {
-        doubleArray.append(i + 0.1 * i);
-    }
-
-    std::cout << "doubleArray.print() = " << doubleArray.print() << std::endl;
-
-    DynamicArray<std::string> stringArray;
+    /*int* heap_memory = new int[5];
 
     for(int i = 0; i < 5; i++) {
-        stringArray.append("Hello, my value is " + std::to_string(i));
+        heap_memory[i] = 3 * i;
     }
 
-    std::cout << "stringArray.print() = " << stringArray.print() << std::endl;*/
+    int* copy_of_heap_memory = deep_copy(heap_memory, 5);
 
-    std::cout << add<int>(3, 5) << std::endl;
-    std::cout << add<double>(3.2, 5.4) << std::endl;
+    heap_memory[1] = -1;
+    print_array(heap_memory, 5);
+    std::cout << std::endl;
+    print_array(copy_of_heap_memory, 5);
 
-    Foo result = add<Foo>(Foo(3), Foo(2));
+    delete[] heap_memory;
+    delete[] copy_of_heap_memory;*/
 
-    std::cout << result.get_content() << std::endl;
+    /*std::cout << "1\n";
+    DynamicMemoryHolder temp;
+    std::cout << "2\n";
 
+    foo(temp);
+    std::cout << "3\n";*/
+
+    /*Pair<int> first = Pair<int>(3, 5);
+    Pair<int> second = Pair<int>(3, 4);
+
+    std::cout << (first != second) << std::endl;*/
+
+    DoubleTypedPair<int, double> first = DoubleTypedPair<int, double>(3, 3.14);
 
     return 0;
 }
